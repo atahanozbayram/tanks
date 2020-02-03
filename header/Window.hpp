@@ -5,6 +5,8 @@
 
 namespace ata
 {
+// Purpose of this class is wrapping RenderWindow class
+// for adding additional features in future.
 class Window : public sf::RenderWindow
 {
 public:
