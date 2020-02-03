@@ -1,6 +1,8 @@
 #include <iostream>
+#include "Window.hpp"
 
 int main(int argc, char** argv)
 {
-    std::cout << "initial commit of the project\n";
+	ata::Window window(sf::VideoMode(800, 600), "Atahan");
+	return 0;
 }
