@@ -1,3 +1,5 @@
+#include <cstdarg>
+#include <utility>
 #include "WindowManager.hpp"
 
 // Constructors and destructor
@@ -11,7 +13,4 @@
 
 	}
 
-	ata::Window& ata::WindowManager::addWindow()
-	{
-
-	}
+// Public interface functions

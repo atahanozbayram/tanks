@@ -13,11 +13,22 @@ public:
 	~WindowManager();
 
 // Public interface functions
-	Window &addWindow();
+
+	// addWindow function takes unlimited amount off arguments.
+	// It will emplace Window item end of the m_windowContainer.
+	template <class... Args>
+	Window* addWindow(Args&&... args);
 
 private:
 	std::vector<Window*> m_windowContainer;
 };
+
+// Some function definitions must be in the header file
+	template <class... Args>
+	Window* WindowManager::addWindow(Args&&... args)
+	{
+		return this->m_windowContainer.emplace_back(new Window(std::forward<Args>(args)...));
+	}
 } // namespace ata
 
 #endif
