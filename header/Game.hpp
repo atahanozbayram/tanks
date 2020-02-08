@@ -2,7 +2,10 @@
 #define ATA_GAME_HPP
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Clock.hpp>
+#include <SFML/Graphics/RenderStates.hpp>
 #include "WindowManager.hpp"
+#include "EntityManager.hpp"
+
 
 namespace ata
 {
@@ -16,11 +19,15 @@ public:
 
 private:
 // Private utility functions
-	void initializeGame();
+	void updateGame(Window* windowPtr, sf::Event* eventPtr);
+	void renderWindow(Window* windowPtr);
+	void updateEvents(Window* windowPtr, sf::Event* eventPtr);
+
+	void initGame();
 
 	// private members
 	WindowManager m_windowManager;
-
+	EntityManager m_entityManager;
 };
 } // namespace ata
 
