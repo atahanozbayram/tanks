@@ -5,7 +5,8 @@
 #include <SFML/Graphics/RenderStates.hpp>
 #include "WindowManager.hpp"
 #include "EntityManager.hpp"
-#include "State.hpp"
+#include "EventManager.hpp"
+#include "StateManager.hpp"
 
 
 namespace ata
@@ -20,7 +21,7 @@ public:
 
 private:
 // Private utility functions
-	void gameLoop(Window* windowPtr, sf::Event* eventPtr);
+	void gameLoop(Window* windowPtr, sf::Event* eventPtr, State* statePtr);
 	void handleInput();
 	void updateGame(Window *windowPtr, sf::Event *eventPtr);
 	void renderWindow(Window* windowPtr);
@@ -31,7 +32,8 @@ private:
 	// private members
 	WindowManager m_windowManager;
 	EntityManager m_entityManager;
-	State m_state;
+	EventManager m_eventManager;
+	StateManager m_stateManager;
 };
 } // namespace ata
 

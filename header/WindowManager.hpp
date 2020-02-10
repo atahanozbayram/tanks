@@ -32,3 +32,4 @@ private:
 } // namespace ata
 
 #endif
+// Test: Positive

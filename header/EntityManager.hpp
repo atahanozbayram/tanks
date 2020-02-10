@@ -16,6 +16,7 @@ public:
 
 // Interface functions
 
+
 	// Returns pointer to the m_entityContainer
 	typename std::vector<Entity*>* getEntityContainer();
 

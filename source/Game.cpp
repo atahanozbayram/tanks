@@ -18,9 +18,9 @@
 	}
 
 // Private utility functions
-	void ata::Game::gameLoop(Window* windowPtr, sf::Event* eventPtr)
+	void ata::Game::gameLoop(Window* windowPtr, sf::Event* eventPtr, State* statePtr)
 	{
-		while (this->m_state == ata::State::Game)
+		while (*statePtr == ata::State::Game)
 		{
 			this->handleInput();
 			this->updateEvents(windowPtr, eventPtr);
@@ -56,8 +56,5 @@
 
 	void ata::Game::initGame()
 	{
-		// TODO: Create two classes and come back here.
-		// Classes should be Setting and SettingManager
-		Window* windowPtr = m_windowManager.addWindow();
-
+		// TODO: left here
 	}

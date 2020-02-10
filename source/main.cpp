@@ -1,36 +1,30 @@
 #include <iostream>
-#include <SFML/Graphics/Drawable.hpp>
-#include <SFML/Graphics/Transformable.hpp>
 #include <SFML/Graphics/CircleShape.hpp>
-#include <SFML/Graphics/RenderWindow.hpp>
-#include <SFML/Graphics/Shape.hpp>
-#include <SFML/Window/Event.hpp>
-
-class Entity : public sf::Drawable, public sf::Transformable
-{
-public:
-};
-
+#include "StateManager.hpp"
+#include "EventManager.hpp"
+#include "EntityManager.hpp"
+#include "SettingManager.hpp"
+#include "WindowManager.hpp"
 int main(int argc, char** argv)
 {
-	sf::RenderWindow window(sf::VideoMode(800, 600), "Atahan");
-	sf::Event event;
+	ata::EventManager eventManager;
+	sf::Event *eventPtr1 = eventManager.addEvent();
+
+	sf::RenderWindow window(sf::VideoMode(800, 600), "title");
 
 	sf::CircleShape circle(300);
-	circle.setFillColor(sf::Color::Red);
-
-	sf::Shape *entity = &circle;
+	circle.setFillColor(sf::Color::Magenta);
 
 	while (window.isOpen())
 	{
-		while (window.pollEvent(event))
+		while (window.pollEvent(*eventPtr1))
 		{
-			if (event.type == sf::Event::Closed)
+			if (eventPtr1->type == sf::Event::Closed)
 				window.close();
 		}
 
 		window.clear();
-		window.draw(*entity);
+		window.draw(circle);
 		window.display();
 	}
 }
