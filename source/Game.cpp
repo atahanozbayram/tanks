@@ -56,5 +56,7 @@
 
 	void ata::Game::initGame()
 	{
-		// TODO: left here
+		// TODO: My prediction for the design is first I should figure out
+		// how to retrieve settings, and have some default ones.
+		// After doing this, I will be able to initialize a window at this point.
 	}
