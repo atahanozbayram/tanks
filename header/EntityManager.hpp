@@ -18,7 +18,7 @@ public:
 
 
 	// Returns pointer to the m_entityContainer
-	typename std::vector<Entity*>* getEntityContainer();
+	typename std::vector<Entity*>& getEntityContainer();
 
 private:
 	std::vector<Entity*> m_entityContainer;

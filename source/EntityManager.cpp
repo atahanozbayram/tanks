@@ -11,7 +11,7 @@
 
 	}
 
-	typename std::vector<ata::Entity*>* ata::EntityManager::getEntityContainer()
+	typename std::vector<ata::Entity*>& ata::EntityManager::getEntityContainer()
 	{
-		return &this->m_entityContainer;
+		return this->m_entityContainer;
 	}

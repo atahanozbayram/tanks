@@ -7,24 +7,13 @@
 #include "WindowManager.hpp"
 int main(int argc, char** argv)
 {
-	ata::EventManager eventManager;
-	sf::Event *eventPtr1 = eventManager.addEvent();
+	ata::SettingManager settingManager;
+	ata::Setting* settingPtr = settingManager.addSetting("width", "1920");
 
-	sf::RenderWindow window(sf::VideoMode(800, 600), "title");
+	std::cout << "settingPtr's name: " << settingPtr->m_name
+	<< " settingPtr's value: " << settingPtr->m_value << '\n';
 
-	sf::CircleShape circle(300);
-	circle.setFillColor(sf::Color::Magenta);
-
-	while (window.isOpen())
-	{
-		while (window.pollEvent(*eventPtr1))
-		{
-			if (eventPtr1->type == sf::Event::Closed)
-				window.close();
-		}
-
-		window.clear();
-		window.draw(circle);
-		window.display();
-	}
+	ata::Setting* returnedPtr = settingManager.getSettingByName("width");
+	std::cout << "returnedPtr's name: " << returnedPtr->m_name
+	<< " returnedPtr's value: " << returnedPtr->m_value << '\n';
 }

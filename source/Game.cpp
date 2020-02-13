@@ -42,7 +42,7 @@
 	{
 		windowPtr->clear();
 		// Draw the entities
-		for (auto& element : *this->m_entityManager.getEntityContainer())
+		for (auto& element : this->m_entityManager.getEntityContainer())
 		{
 			windowPtr->draw(*element);
 		}
