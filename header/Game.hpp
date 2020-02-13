@@ -7,6 +7,7 @@
 #include "EntityManager.hpp"
 #include "EventManager.hpp"
 #include "StateManager.hpp"
+#include "SettingManager.hpp"
 
 
 namespace ata
@@ -28,12 +29,14 @@ private:
 	void updateEvents(Window* windowPtr, sf::Event* eventPtr);
 
 	void initGame();
+	Setting* getSettingOrDefault(const std::string& name) const;
 
 	// private members
 	WindowManager m_windowManager;
 	EntityManager m_entityManager;
 	EventManager m_eventManager;
 	StateManager m_stateManager;
+	SettingManager m_settingManager;
 };
 } // namespace ata
 

@@ -19,12 +19,15 @@ public:
 
 	Setting* addSetting(const std::string& name, const std::string& value);
 	Setting* getSettingByName(const std::string& name) const;
-//private:
+private:
 	std::vector<Setting*> m_settingContainer;
 };
+
+static SettingManager defaultSettings;
+
 } // namespace ata
 
-static ata::SettingManager defaultSettings;
+
 
 
 #endif

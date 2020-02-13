@@ -34,6 +34,7 @@
 		Setting* indexPtr = *iterator;
 
 		// check whether iterator is end iterator
+		// if so check if ata::defaultSettings does contain it.
 		if (iterator == m_settingContainer.end())
 			indexPtr = nullptr;
 		
@@ -42,7 +43,8 @@
 
 	int test = []()->int
 	{
-		defaultSettings.addSetting("width", "1920");
-		defaultSettings.addSetting("height", "1080");
+		ata::defaultSettings.addSetting("width", "1920");
+		ata::defaultSettings.addSetting("height", "1080");
+		ata::defaultSettings.addSetting("title", "SFML Tanks");
 		return 0;
 	}();

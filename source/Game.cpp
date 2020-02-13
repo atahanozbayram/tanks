@@ -56,7 +56,30 @@
 
 	void ata::Game::initGame()
 	{
-		// TODO: My prediction for the design is first I should figure out
-		// how to retrieve settings, and have some default ones.
-		// After doing this, I will be able to initialize a window at this point.
+		// get the width, and height of the window
+		Setting* settingPtr = getSettingOrDefault("width");
+		int windowWidth = std::stoi(settingPtr->m_value);
+
+		settingPtr = getSettingOrDefault("height");
+		int windowHeight = std::stoi(settingPtr->m_value);
+		
+		settingPtr = getSettingOrDefault("title");
+		std::string windowTitle = settingPtr->m_value;
+
+		Window* windowPtr = m_windowManager.addWindow(sf::VideoMode(windowWidth, windowHeight), windowTitle);
+
+	}
+
+	ata::Setting* ata::Game::getSettingOrDefault(const std::string& name) const
+	{
+		Setting* settingPtr = m_settingManager.getSettingByName(name);
+		if (settingPtr == nullptr)
+		{
+			settingPtr = ata::defaultSettings.getSettingByName(name);
+			if (settingPtr == nullptr)
+			{
+				throw std::runtime_error("can't find setting\n");
+			}
+		}
+		return settingPtr;
 	}
