@@ -11,12 +11,24 @@ class Window : public sf::RenderWindow
 {
 public:
     // Inherit all the constructors from the base class
-    using sf::RenderWindow::RenderWindow;
+	template <class...Args>
+	Window(const std::string& windowName, Args&&... args);
 
     // use virtual destructor
     virtual ~Window();
+private:
     std::string m_windowName;
 };
 } // namespace ata
+
+template <class...Args>
+ata::Window::Window(const std::string& windowName, Args&&... args)
+:
+m_windowName(windowName),
+sf::RenderWindow(std::forward<Args>(args)...)
+{
+
+}
+
 
 #endif

@@ -14,7 +14,7 @@
 // Public interface functions
 	void ata::Game::run()
 	{
-		
+		initGame();
 	}
 
 // Private utility functions
@@ -54,7 +54,7 @@
 		windowPtr->pollEvent(*event);
 	}
 
-	void ata::Game::initGame()
+	ata::Window* ata::Game::initWindow()
 	{
 		// get the width, and height of the window
 		Setting* settingPtr = getSettingOrDefault("width");
@@ -62,11 +62,16 @@
 
 		settingPtr = getSettingOrDefault("height");
 		int windowHeight = std::stoi(settingPtr->m_value);
-		
+
 		settingPtr = getSettingOrDefault("title");
 		std::string windowTitle = settingPtr->m_value;
 
-		Window* windowPtr = m_windowManager.addWindow(sf::VideoMode(windowWidth, windowHeight), windowTitle);
+		return m_windowManager.addWindow("main", sf::VideoMode(windowWidth, windowHeight), windowTitle);
+	}
+
+	void ata::Game::initGame()
+	{
+		Window* windowPtr = initWindow();
 
 	}
 

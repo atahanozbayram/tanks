@@ -28,6 +28,7 @@ private:
 	void renderWindow(Window* windowPtr);
 	void updateEvents(Window* windowPtr, sf::Event* eventPtr);
 
+	Window* initWindow();
 	void initGame();
 	Setting* getSettingOrDefault(const std::string& name) const;
 
