@@ -1,26 +1,28 @@
 #include <iostream>
-#include <SFML/Graphics/CircleShape.hpp>
-#include "StateManager.hpp"
-#include "EventManager.hpp"
-#include "EntityManager.hpp"
-#include "SettingManager.hpp"
+#include <SFML/Window/Event.hpp>
 #include "WindowManager.hpp"
-
-class Test
-{
-public:
-	Test()
-	{
-		std::cout << "Test object is created\n";
-	}
-
-	~Test()
-	{
-		std::cout << "Test object is destructored\n";
-	}
-};
 
 int main(int argc, char** argv)
 {
+	ata::WindowManager windowManager;
+	ata::Window* windowPtr = windowManager.addWindow("main", sf::VideoMode(800,600), "Ancestor");
+	
+	if (windowPtr != nullptr)
+	{
+		std::cout << "window(" << windowPtr->getWindowName() << ") is initialized\n";
+		sf::Event event;
+		while (windowPtr->isOpen())
+		{
+			while (windowPtr->pollEvent(event))
+			{
+				if (event.type == sf::Event::Closed)
+				{
+					windowPtr->close();
+				}
 
+				windowPtr->clear();
+				windowPtr->display();
+			}
+		}
+	}
 }

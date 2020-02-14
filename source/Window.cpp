@@ -4,3 +4,8 @@
 ata::Window::~Window()
 {
 }
+
+std::string ata::Window::getWindowName() const
+{
+	return this->m_windowName;
+}

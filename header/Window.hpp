@@ -13,9 +13,10 @@ public:
     // Inherit all the constructors from the base class
 	template <class...Args>
 	Window(const std::string& windowName, Args&&... args);
-
     // use virtual destructor
     virtual ~Window();
+
+	std::string getWindowName() const;
 private:
     std::string m_windowName;
 };
@@ -29,6 +30,4 @@ sf::RenderWindow(std::forward<Args>(args)...)
 {
 
 }
-
-
 #endif
