@@ -11,7 +11,7 @@
 
 	}
 
-	sf::Event* ata::EventManager::addEvent(const sf::Event& event)
+	ata::Event* ata::EventManager::addEvent(const Event& event)
 	{
-		return this->m_eventContainer.emplace_back(new sf::Event(event));
+		return this->m_eventContainer.emplace_back(new Event(event));
 	}

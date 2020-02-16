@@ -14,7 +14,7 @@ public:
 	~StateManager();
 
 // Public interface functions
-	State *addState(const ata::State& state);
+	State *addState(const ata::State& state = State());
 
 private:
 	std::vector<State*> m_stateContainer;

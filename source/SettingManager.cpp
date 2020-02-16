@@ -20,31 +20,23 @@
 		return settingPtr;
 	}
 	
-	ata::Setting* ata::SettingManager::getSettingByName(const std::string& name) const
+
+	ata::Setting* ata::SettingManager::getSettingByName(const std::string& name)
 	{
-		decltype(m_settingContainer)::const_iterator iterator = std::find_if(
+		decltype(m_settingContainer)::iterator iterator = std::find_if(
 			m_settingContainer.begin(),
 			m_settingContainer.end(),
-			[&](Setting* element)->bool
+			[&](Setting*(&element))->bool
 			{
 				return element->m_name == name;
 			}
 		);
-		// create pointer to return it
-		Setting* indexPtr = *iterator;
 
-		// check whether iterator is end iterator
-		// if so check if ata::defaultSettings does contain it.
+		// check whether the iterator is end iterator.
 		if (iterator == m_settingContainer.end())
-			indexPtr = nullptr;
+			return nullptr;
 		
-		return indexPtr;
+		// if program reaches here, that means we have the pointer.
+		// dereference the iterator and return it.
+		return *iterator;
 	}
-
-	int test = []()->int
-	{
-		ata::defaultSettings.addSetting("width", "1920");
-		ata::defaultSettings.addSetting("height", "1080");
-		ata::defaultSettings.addSetting("title", "SFML Tanks");
-		return 0;
-	}();

@@ -14,13 +14,14 @@
 // Public interface functions
 	void ata::Game::run()
 	{
-		initGame();
+		std::function<void()> func = initGame();
+		func();
 	}
-
+	
 // Private utility functions
-	void ata::Game::gameLoop(Window* windowPtr, sf::Event* eventPtr, State* statePtr)
+	void ata::Game::gameLoop(Window* windowPtr, Event* eventPtr, State* statePtr)
 	{
-		while (*statePtr == ata::State::Game)
+		while (statePtr->m_state == ata::State::Game)
 		{
 			this->handleInput();
 			this->updateEvents(windowPtr, eventPtr);
@@ -34,7 +35,7 @@
 
 	}
 
-	void ata::Game::updateGame(Window* windowPtr, sf::Event* eventPtr)
+	void ata::Game::updateGame(Window* windowPtr, Event* eventPtr)
 	{
 	}
 
@@ -49,42 +50,36 @@
 		windowPtr->display();
 	}
 
-	void ata::Game::updateEvents(Window* windowPtr, sf::Event* event)
+	void ata::Game::updateEvents(Window* windowPtr, Event* event)
 	{
 		windowPtr->pollEvent(*event);
 	}
 
 	ata::Window* ata::Game::initWindow()
 	{
-		// get the width, and height of the window
-		Setting* settingPtr = getSettingOrDefault("width");
-		int windowWidth = std::stoi(settingPtr->m_value);
-
-		settingPtr = getSettingOrDefault("height");
-		int windowHeight = std::stoi(settingPtr->m_value);
-
-		settingPtr = getSettingOrDefault("title");
-		std::string windowTitle = settingPtr->m_value;
-
-		return m_windowManager.addWindow("main", sf::VideoMode(windowWidth, windowHeight), windowTitle);
+		// TODO: Implement this function
 	}
 
-	void ata::Game::initGame()
+	ata::Event* ata::Game::initEvent()
 	{
+		return m_eventManager.addEvent();
+	}
+
+	ata::State* ata::Game::initState()
+	{
+		return m_stateManager.addState();
+	}
+
+	
+	std::function<void()> ata::Game::initGame()
+	{
+		
 		Window* windowPtr = initWindow();
+		Event* eventPtr = initEvent();
+		State* statePtr = initState();
 
+		std::function<void()> function = std::bind(&ata::Game::gameLoop, *this, windowPtr, eventPtr, statePtr);
+		return function;
 	}
 
-	ata::Setting* ata::Game::getSettingOrDefault(const std::string& name) const
-	{
-		Setting* settingPtr = m_settingManager.getSettingByName(name);
-		if (settingPtr == nullptr)
-		{
-			settingPtr = ata::defaultSettings.getSettingByName(name);
-			if (settingPtr == nullptr)
-			{
-				throw std::runtime_error("can't find setting\n");
-			}
-		}
-		return settingPtr;
-	}
+	

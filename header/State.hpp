@@ -3,14 +3,20 @@
 
 namespace ata
 {
-
-enum State
+class State
 {
-	Halt = 0,
-	Game,
-	Quit
-};
+public:
+	enum StateType
+	{
+		Halt = 0,
+		Game,
+		Quit
+	};
 
+	StateType m_state;
+
+
+};
 } // namespace ata
 
 #endif

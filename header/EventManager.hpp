@@ -2,8 +2,7 @@
 #define ATA_EVENT_MANAGER_HPP
 
 #include <vector>
-#include <SFML/Window/Event.hpp>
-
+#include "Event.hpp"
 
 namespace ata
 {
@@ -14,10 +13,10 @@ public:
 	EventManager();
 	~EventManager();
 
-	sf::Event* addEvent(const sf::Event& event = sf::Event());
+	Event* addEvent(const Event& event = Event());
 
 private:
-	std::vector<sf::Event*> m_eventContainer;
+	std::vector<Event*> m_eventContainer;
 };
 }
 

@@ -18,12 +18,11 @@ public:
 	~SettingManager();
 
 	Setting* addSetting(const std::string& name, const std::string& value);
-	Setting* getSettingByName(const std::string& name) const;
+	Setting* getSettingByName(const std::string& name);
 private:
 	std::vector<Setting*> m_settingContainer;
 };
 
-static SettingManager defaultSettings;
 
 } // namespace ata
 
