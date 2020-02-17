@@ -67,7 +67,7 @@
 
 	ata::State* ata::Game::initState()
 	{
-		return m_stateManager.addState();
+		return m_stateManager.addState("main", State::StateType::Menu);
 	}
 
 	

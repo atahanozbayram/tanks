@@ -2,6 +2,7 @@
 #define ATA_STATE_MANAGER_HPP
 
 #include <vector>
+#include <algorithm>
 #include "State.hpp"
 
 namespace ata
@@ -14,8 +15,8 @@ public:
 	~StateManager();
 
 // Public interface functions
-	State *addState(const ata::State& state = State());
-
+	State* getStateByName(const std::string& name);
+	State* addState(const std::string& name, const State::StateType& type);
 private:
 	std::vector<State*> m_stateContainer;
 };
