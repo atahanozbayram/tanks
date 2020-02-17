@@ -57,7 +57,8 @@
 
 	ata::Window* ata::Game::initWindow()
 	{
-		// TODO: Implement this function
+		return m_windowManager.addWindow("main", sf::VideoMode(800,600), "Tanks");
+
 	}
 
 	ata::Event* ata::Game::initEvent()
