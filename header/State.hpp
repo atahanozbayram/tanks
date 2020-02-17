@@ -20,7 +20,7 @@ public:
 	~State();
 
 	std::string m_name;
-	StateType m_state;
+	StateType m_type;
 
 
 };

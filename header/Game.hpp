@@ -4,11 +4,11 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Clock.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
-#include "WindowManager.hpp"
 #include "EntityManager.hpp"
-#include "EventManager.hpp"
-#include "StateManager.hpp"
 #include "SettingManager.hpp"
+#include "Window.hpp"
+#include "Event.hpp"
+#include "State.hpp"
 
 
 namespace ata
@@ -23,11 +23,12 @@ public:
 
 private:
 // Private utility functions
-	void gameLoop(Window* windowPtr, Event* eventPtr, State* statePtr);
+	void menuLoop(Window* windowPtr, Event* eventPtr);
+	void gameLoop(Window* windowPtr, Event* eventPtr);
 	void handleInput();
 	void updateGame(Window *windowPtr, Event *eventPtr);
 	void renderWindow(Window* windowPtr);
-	void updateEvents(Window* windowPtr, Event* eventPtr);
+	void updateSfmlEvents(Window* windowPtr, Event* eventPtr);
 
 	Window* initWindow();
 	Event* initEvent();
@@ -35,14 +36,14 @@ private:
 
 	
 	std::function<void()> initGame();
-	Setting* getSettingOrDefault(const std::string& name);
+	
 
 	// private members
-	WindowManager m_windowManager;
-	EntityManager m_entityManager;
-	EventManager m_eventManager;
-	StateManager m_stateManager;
+	Window* m_window;
+	Event* m_event;
+	State* m_state;
 	SettingManager m_settingManager;
+	EntityManager m_entityManager;
 };
 
 

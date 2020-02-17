@@ -4,7 +4,7 @@
 	ata::State::State(const std::string& name, const StateType& state)
 	:
 	m_name(name),
-	m_state(state)
+	m_type(state)
 	{
 
 	}

@@ -14,20 +14,29 @@
 // Public interface functions
 	void ata::Game::run()
 	{
-		std::function<void()> func = initGame();
-		func();
+		std::function<void()> gameFunction = initGame();
+		State* statePtr = m_state;
+		switch (statePtr->m_type)
+		{
+			case State::StateType::Game :
+				gameFunction();
+				break;
+		}
 	}
 	
 // Private utility functions
-	void ata::Game::gameLoop(Window* windowPtr, Event* eventPtr, State* statePtr)
+	void ata::Game::menuLoop(Window* windowPtr, Event* eventPtr)
 	{
-		while (statePtr->m_state == ata::State::Game)
-		{
-			this->handleInput();
-			this->updateEvents(windowPtr, eventPtr);
-			this->updateGame(windowPtr, eventPtr);
-			this->renderWindow(windowPtr);
-		}
+		this->handleInput();
+		this->updateSfmlEvents(windowPtr, eventPtr);
+	}
+
+	void ata::Game::gameLoop(Window* windowPtr, Event* eventPtr)
+	{
+		this->handleInput();
+		this->updateSfmlEvents(windowPtr, eventPtr);
+		this->updateGame(windowPtr, eventPtr);
+		this->renderWindow(windowPtr);
 	}
 
 	void ata::Game::handleInput()
@@ -50,25 +59,24 @@
 		windowPtr->display();
 	}
 
-	void ata::Game::updateEvents(Window* windowPtr, Event* event)
+	void ata::Game::updateSfmlEvents(Window* windowPtr, Event* event)
 	{
 		windowPtr->pollEvent(*event);
 	}
 
 	ata::Window* ata::Game::initWindow()
 	{
-		return m_windowManager.addWindow("main", sf::VideoMode(800,600), "Tanks");
-
+		return m_window = new Window("main", sf::VideoMode(800, 600), "Tanks");
 	}
 
 	ata::Event* ata::Game::initEvent()
 	{
-		return m_eventManager.addEvent();
+		return m_event = new Event();
 	}
 
 	ata::State* ata::Game::initState()
 	{
-		return m_stateManager.addState("main", State::StateType::Menu);
+		return m_state = new State("main", State::StateType::Menu);
 	}
 
 	
@@ -77,9 +85,8 @@
 		
 		Window* windowPtr = initWindow();
 		Event* eventPtr = initEvent();
-		State* statePtr = initState();
 
-		std::function<void()> function = std::bind(&ata::Game::gameLoop, *this, windowPtr, eventPtr, statePtr);
+		std::function<void()> function = std::bind(&ata::Game::gameLoop, *this, windowPtr, eventPtr);
 		return function;
 	}
 
