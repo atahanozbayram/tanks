@@ -2,6 +2,8 @@
 #define ATA_STATE_HPP
 
 #include <string>
+#include <SFML/System/Clock.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
 
 namespace ata
 {
@@ -14,11 +16,21 @@ public:
 		Menu,
 		Game
 	};
-public:
+
 	virtual StateType getState() const = 0;
 
+public:
+	virtual void updateInputs() final;
+	virtual void updateSfmlEvents() final;
+	virtual void updateState();
+	virtual void RenderEntities(sf::RenderTarget& renderTarget);
 private:
+	sf::Clock m_deltaClock;
 };
 } // namespace ata
+
+/*
+	Abstract class
+*/
 
 #endif
