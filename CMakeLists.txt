@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED)
 
 # set source files
-file(GLOB sourceFiles "source/*.cpp")
+file(GLOB_RECURSE sourceFiles "source/*.cpp")
 
 
 # add the executable
