@@ -8,21 +8,16 @@ namespace ata
 class State
 {
 public:
-	enum StateType
+	enum struct StateType
 	{
-		Halt = 0,
+		Unknown = -1,
 		Menu,
-		Game,
-		Quit
+		Game
 	};
+public:
+	virtual StateType getState() const = 0;
 
-	State(const std::string& name, const StateType& type);
-	~State();
-
-	std::string m_name;
-	StateType m_type;
-
-
+private:
 };
 } // namespace ata
 

@@ -16,5 +16,10 @@
 	{
 		
 	}
+
+	ata::State::StateType ata::Game::getState() const
+	{
+		return State::StateType::Game;
+	}
 	
 // Private utility functions
