@@ -27,10 +27,17 @@
 
 	void ata::State::updateState()
 	{
-
+		
 	}
 
 	void ata::State::renderEntities()
 	{
+		m_renderWindow->clear();
 
+		for (Entity* element : m_entityContainer)
+		{
+			m_renderWindow->draw(*element);
+		}
+
+		m_renderWindow->display();
 	}
