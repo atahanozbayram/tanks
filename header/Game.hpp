@@ -11,7 +11,6 @@ public:
 	Game();
 	~Game();
 // Public interface functions
-	void run();
 
 	StateType getState() const;
 private:

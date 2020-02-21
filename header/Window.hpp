@@ -1,5 +1,7 @@
 #ifndef ATA_WINDOW_HPP
 #define ATA_WINDOW_HPP
+
+
 #include <string>
 #include <SFML/Graphics/RenderWindow.hpp>
 
@@ -30,4 +32,5 @@ sf::RenderWindow(std::forward<Args>(args)...)
 {
 
 }
+
 #endif

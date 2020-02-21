@@ -12,10 +12,7 @@
 	}
 
 // Public interface functions
-	void ata::Game::run()
-	{
-		
-	}
+	
 
 	ata::State::StateType ata::Game::getState() const
 	{

@@ -5,7 +5,7 @@
 
 namespace ata
 {
-class Menu : public State
+class Menu : public ata::State
 {
 public:
 // Constructors and destructor
@@ -14,6 +14,8 @@ public:
 
 // Public interface functions
 	StateType getState() const;
+
+
 private:
 // members
 };

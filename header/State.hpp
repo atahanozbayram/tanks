@@ -3,7 +3,10 @@
 
 #include <string>
 #include <SFML/System/Clock.hpp>
-#include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Window/Event.hpp>
+#include <set>
+#include "Entity.hpp"
 
 namespace ata
 {
@@ -20,12 +23,20 @@ public:
 	virtual StateType getState() const = 0;
 
 public:
+	virtual ~State();
+
+// Public interface functions
+	virtual void stateLoop();
+
 	virtual void updateInputs() final;
 	virtual void updateSfmlEvents() final;
 	virtual void updateState();
-	virtual void RenderEntities(sf::RenderTarget& renderTarget);
+	virtual void renderEntities();
 private:
 	sf::Clock m_deltaClock;
+	sf::RenderWindow* m_renderWindow;
+	sf::Event m_event;
+	std::multiset<Entity*> m_entityContainer;
 };
 } // namespace ata
 
