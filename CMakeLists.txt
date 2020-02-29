@@ -15,7 +15,7 @@ file(GLOB_RECURSE sourceFiles "source/*.cpp")
 add_executable(run ${sourceFiles})
 
 # set include directories
-target_include_directories(run PUBLIC "./header/")
+target_include_directories(run PUBLIC "./include/")
 target_include_directories(run PUBLIC "~/external-libs/SFML/SFML-2.5.1/include/")
 
 target_link_libraries(run
